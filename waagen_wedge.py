@@ -1,4 +1,4 @@
-import serial
+Ôªøimport serial
 import serial.tools.list_ports
 import pyautogui
 import tkinter as tk
@@ -10,7 +10,7 @@ class BalanceWedgeApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Waagen PC-Direct Wedge Pro")
-        self.root.geometry("500x750") # Fenster vergrˆﬂert f¸r den Monitor
+        self.root.geometry("500x750") # Fenster vergr√∂√üert f√ºr den Monitor
         
         self.serial_port = None
         self.is_running = False
@@ -40,12 +40,12 @@ class BalanceWedgeApp:
         self.baud_var = tk.StringVar(value="9600")
         ttk.Combobox(settings_frame, textvariable=self.baud_var, values=["1200", "2400", "4800", "9600", "19200", "38400", "115200"], width=25).grid(row=0, column=1, pady=2)
 
-        # Datenbits / Parit‰t
+        # Datenbits / Parit√§t
         tk.Label(settings_frame, text="Datenbits:").grid(row=1, column=0, sticky="w", pady=2)
         self.databits_var = tk.StringVar(value="8")
         ttk.Combobox(settings_frame, textvariable=self.databits_var, values=["7", "8"], width=25).grid(row=1, column=1, pady=2)
 
-        tk.Label(settings_frame, text="Parit‰t:").grid(row=2, column=0, sticky="w", pady=2)
+        tk.Label(settings_frame, text="Parit√§t:").grid(row=2, column=0, sticky="w", pady=2)
         self.parity_var = tk.StringVar(value="None")
         ttk.Combobox(settings_frame, textvariable=self.parity_var, values=["None", "Odd", "Even"], width=25).grid(row=2, column=1, pady=2)
 
@@ -68,8 +68,8 @@ class BalanceWedgeApp:
         excel_frame.pack(padx=20, anchor="w")
 
         self.direction_var = tk.StringVar(value="enter")
-        tk.Radiobutton(excel_frame, text="N‰chste Zeile (Enter)", variable=self.direction_var, value="enter").pack(anchor="w")
-        tk.Radiobutton(excel_frame, text="N‰chste Spalte (Tab)", variable=self.direction_var, value="tab").pack(anchor="w")
+        tk.Radiobutton(excel_frame, text="N√§chste Zeile (Enter)", variable=self.direction_var, value="enter").pack(anchor="w")
+        tk.Radiobutton(excel_frame, text="N√§chste Spalte (Tab)", variable=self.direction_var, value="tab").pack(anchor="w")
         
         # --- Start/Stop ---
         self.toggle_btn = tk.Button(self.root, text="START (Verbinden)", command=self.toggle_connection, bg="lightgreen", font=("Arial", 12, "bold"), height=2)
@@ -119,7 +119,7 @@ class BalanceWedgeApp:
     def start_reading(self):
         port = self.port_var.get()
         if not port:
-            self.status_label.config(text="Fehler: Bitte COM Port w‰hlen!", fg="red")
+            self.status_label.config(text="Fehler: Bitte COM Port w√§hlen!", fg="red")
             return
 
         parity_map = {"None": serial.PARITY_NONE, "Odd": serial.PARITY_ODD, "Even": serial.PARITY_EVEN}
@@ -166,7 +166,7 @@ class BalanceWedgeApp:
                         raw_debug_str = repr(raw_bytes)
                         self.root.after(0, self.log_to_monitor, f"Empfangen: {raw_debug_str}")
                         
-                        # 3. Das Signal f¸r Excel aufbereiten
+                        # 3. Das Signal f√ºr Excel aufbereiten
                         raw_data = raw_bytes.decode('ascii', errors='ignore').strip()
                         processed_data = raw_data
                         
